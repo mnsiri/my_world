@@ -1,6 +1,11 @@
 class ItinerariesController < ApplicationController
   def index
     @itineraries = Itinerary.all
+    @location_hash = Gmaps4rails.build_markers(@itineraries.where.not(:location_latitude => nil)) do |itinerary, marker|
+      marker.lat itinerary.location_latitude
+      marker.lng itinerary.location_longitude
+      marker.infowindow "<h5><a href='/itineraries/#{itinerary.id}'>#{itinerary.user_id}</a></h5><small>#{itinerary.location_formatted_address}</small>"
+    end
 
     render("itineraries/index.html.erb")
   end
