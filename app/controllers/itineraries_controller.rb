@@ -1,6 +1,6 @@
 class ItinerariesController < ApplicationController
   def index
-    @itineraries = Itinerary.all
+    @itineraries = Itinerary.page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@itineraries.where.not(:location_latitude => nil)) do |itinerary, marker|
       marker.lat itinerary.location_latitude
       marker.lng itinerary.location_longitude
