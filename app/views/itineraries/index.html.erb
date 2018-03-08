@@ -27,9 +27,27 @@
 
       <% @itineraries.each do |itinerary| %>
       <tr>
-        <td><%= itinerary.user.username %></td>
-        <td><%= itinerary.photo.caption %></td>
-        <td><%= itinerary.category.name %></td>
+        <td>
+          <% if itinerary.user.present? %>
+            <a href="/users/<%= itinerary.user.id %>">
+              <%= itinerary.user.username %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if itinerary.photo.present? %>
+            <a href="/photos/<%= itinerary.photo.id %>">
+              <%= itinerary.photo.caption %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if itinerary.category.present? %>
+            <a href="/categories/<%= itinerary.category.id %>">
+              <%= itinerary.category.name %>
+            </a>
+          <% end %>
+        </td>
         <td><%= itinerary.location %></td>
         <td>
           <a href="/itineraries/<%= itinerary.id %>" class="btn btn-primary">Show</a>

@@ -6,13 +6,31 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>User</dt>
-      <dd><%= @itinerary.user_id %></dd>
+      <dd>
+        <% if @itinerary.user.present? %>
+          <a href="/users/<%= @itinerary.user_id %>">
+            <%= @itinerary.user.username %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Photo</dt>
-      <dd><%= @itinerary.photo_id %></dd>
+      <dd>
+        <% if @itinerary.photo.present? %>
+          <a href="/photos/<%= @itinerary.photo_id %>">
+            <%= @itinerary.photo.caption %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Category</dt>
-      <dd><%= @itinerary.category_id %></dd>
+      <dd>
+        <% if @itinerary.category.present? %>
+          <a href="/categories/<%= @itinerary.category_id %>">
+            <%= @itinerary.category.name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Location</dt>
       <dd>
