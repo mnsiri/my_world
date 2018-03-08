@@ -1,6 +1,8 @@
 class Itinerary < ApplicationRecord
   # Direct associations
 
+  belongs_to :photo
+
   belongs_to :user,
              :counter_cache => true
 

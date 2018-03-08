@@ -1,6 +1,9 @@
 class Photo < ApplicationRecord
   # Direct associations
 
+  has_one    :itinerary,
+             :dependent => :nullify
+
   belongs_to :user
 
   # Indirect associations
