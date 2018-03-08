@@ -19,7 +19,7 @@
       <% @itineraries.each do |itinerary| %>
       <tr>
         <td><%= itinerary.user.username %></td>
-        <td><%= itinerary.photo_id %></td>
+        <td><%= itinerary.photo.caption %></td>
         <td><%= itinerary.category_id %></td>
         <td><%= itinerary.location %></td>
         <td>
