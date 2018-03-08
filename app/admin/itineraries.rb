@@ -1,6 +1,6 @@
 ActiveAdmin.register Itinerary do
 
- permit_params :user_id, :photo_id, :category_id, :location
+ permit_params :user_id, :photo_id, :category_id, :country, :name
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

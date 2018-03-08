@@ -2,11 +2,6 @@ class ItinerariesController < ApplicationController
   def index
     @q = Itinerary.ransack(params[:q])
     @itineraries = @q.result(:distinct => true).includes(:user, :photo, :likes, :comments, :category, :users).page(params[:page]).per(10)
-    @location_hash = Gmaps4rails.build_markers(@itineraries.where.not(:location_latitude => nil)) do |itinerary, marker|
-      marker.lat itinerary.location_latitude
-      marker.lng itinerary.location_longitude
-      marker.infowindow "<h5><a href='/itineraries/#{itinerary.id}'>#{itinerary.user_id}</a></h5><small>#{itinerary.location_formatted_address}</small>"
-    end
 
     render("itineraries/index.html.erb")
   end
@@ -31,7 +26,8 @@ class ItinerariesController < ApplicationController
     @itinerary.user_id = params[:user_id]
     @itinerary.photo_id = params[:photo_id]
     @itinerary.category_id = params[:category_id]
-    @itinerary.location = params[:location]
+    @itinerary.country = params[:country]
+    @itinerary.name = params[:name]
 
     save_status = @itinerary.save
 
@@ -61,7 +57,8 @@ class ItinerariesController < ApplicationController
     @itinerary.user_id = params[:user_id]
     @itinerary.photo_id = params[:photo_id]
     @itinerary.category_id = params[:category_id]
-    @itinerary.location = params[:location]
+    @itinerary.country = params[:country]
+    @itinerary.name = params[:name]
 
     save_status = @itinerary.save
 
