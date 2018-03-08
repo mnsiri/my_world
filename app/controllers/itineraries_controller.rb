@@ -6,6 +6,8 @@ class ItinerariesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @like = Like.new
     @itinerary = Itinerary.find(params[:id])
 
     render("itineraries/show.html.erb")
