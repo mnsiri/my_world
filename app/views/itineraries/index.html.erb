@@ -9,6 +9,16 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
+    <%= f.label :name_cont, "Name contains" %>
+    <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :country_cont, "Country contains" %>
+    <%= f.text_field :country_cont, :class => "form-control", :placeholder => "Country contains" %>
+  </div>
+
+<div class="form-group">
           <%= f.label :created_at, "Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
@@ -83,15 +93,6 @@
   </div>
 </div>
 
-
-<div class="row m-b-2">
-  <div class="col-md-12">
-    <div>
-      <div id="location_map" style="height: 480px;"></div>
-    </div>
-  </div>
-</div>
-
 <div class="row">
   <div class="col-md-12">
     <table class="table table-striped table-hover">
@@ -99,7 +100,8 @@
         <th>User</th>
         <th>Photo</th>
         <th>Category</th>
-        <th>Location</th>
+        <th>Country</th>
+        <th>Name</th>
         <th>Actions</th>
       </tr>
 
@@ -126,7 +128,8 @@
             </a>
           <% end %>
         </td>
-        <td><%= itinerary.location %></td>
+        <td><%= itinerary.country %></td>
+        <td><%= itinerary.name %></td>
         <td>
           <a href="/itineraries/<%= itinerary.id %>" class="btn btn-primary">Show</a>
           <a href="/itineraries/<%= itinerary.id %>/edit" class="btn btn-warning">Edit</a>
@@ -138,14 +141,3 @@
     <%= paginate @itineraries, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
-
-<script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
-<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-<script>
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'location_map'}}, function(){
-    markers = handler.addMarkers(<%= raw @location_hash.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-  });
-</script>
