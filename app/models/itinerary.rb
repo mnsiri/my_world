@@ -1,6 +1,9 @@
 class Itinerary < ApplicationRecord
   # Direct associations
 
+  belongs_to :category,
+             :counter_cache => true
+
   has_many   :comments,
              :dependent => :destroy
 
